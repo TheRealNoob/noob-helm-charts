@@ -1,0 +1,112 @@
+# {{ .Name }} Helm Chart # .Name isn't capitalized, perhaps it'd be better to not template it as to match current Camel Case
+
+{{ template "chart.description" . }}
+
+{{ template "chart.sourcesSection" . }}
+
+{{ template "chart.requirementsSection" . }} # also includes the .dependencies section.  None of our current charts have them which leads to only showing `Kubernetes => 1.25.0`, however Loki does have them and so it's kinda helpful.
+
+## Installing the Chart
+
+### OCI Registry
+
+OCI registries are preferred in Helm as they implement unified storage, distribution, and improved security.
+It does lack some features like the native ability to search chart versions.
+For production however, OCI is recommended.
+
+```console
+helm install RELEASE-NAME oci://ghcr.io/grafana-community/helm-charts/{{ .Name }}
+```
+
+### HTTP Registry
+
+```console
+helm repo add grafana-community https://grafana-community.github.io/helm-charts
+helm repo update
+helm install RELEASE-NAME grafana-community/{{ .Name }}
+```
+
+## Uninstalling the Chart
+
+To removes all of the Kubernetes objects associated with the Helm chart release:
+
+```console
+helm delete RELEASE-NAME
+```
+
+# Changelog
+
+link to changelog.md # planned feature
+
+# Upgrading
+
+Notes on Major releases.  Deeper description (than changelog) of changes made, motivation for change, and required actions
+
+
+=== above this line is standardized, below is freeform per-chart ===
+
+
+# Configuration
+
+* Common use-case examples
+
+
+
+
+
+
+
+
+
+
+
+
+# {{ .Name }} Helm Chart
+
+{{ template "chart.description" . }}
+
+Sources
+{{ template "chart.sourcesList" . }}
+
+## Installing the Chart
+
+### OCI Registry
+
+OCI registries are preferred in Helm as they implement unified storage, distribution, and improved security.
+It does lack some features like the native ability to search chart versions.
+For production however, OCI is recommended.
+
+To install from an OCI registry:
+
+```console
+helm install RELEASE-NAME oci://ghcr.io/grafana-community/helm-charts/{{ .Name }}
+```
+
+### Helm Repository
+
+To install from a non-OCI registry:
+
+```console
+helm repo add grafana-community https://grafana-community.github.io/helm-charts
+helm repo update
+helm install RELEASE-NAME grafana-community/{{ .Name }}
+```
+
+## Uninstalling the Chart
+
+To removes all of the Kubernetes objects associated with the Helm chart release:
+
+```console
+helm delete RELEASE-NAME
+```
+
+## Configuration
+
+Vulture only works with Jaeger gRPC, so make sure 14250 is open on your distributor. You don't need to specify the port in the distributor URL.
+
+Example configuration:
+```yaml
+tempoAddress:
+    push: http://tempo-tempo-distributed-distributor
+    query: http://tempo-tempo-distributed-query-frontend:3100
+```

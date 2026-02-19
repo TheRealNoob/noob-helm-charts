@@ -1,0 +1,47 @@
+{{- if .Values.enterprise.enabled -}}
+{{ $dict := dict "ctx" . "component" "enterprise-gateway" }}
+{{- if .Values.enterpriseGateway.ingress.enabled -}}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ include "tempo.resourceName" $dict }}
+  labels:
+    {{- include "tempo.labels" $dict | nindent 4 }}
+  {{- with .Values.enterpriseGateway.ingress.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  namespace: {{ .Release.Namespace | quote }}
+spec:
+  {{- with .Values.enterpriseGateway.ingress.ingressClassName }}
+  ingressClassName: {{ . }}
+  {{- end }}
+  {{- if .Values.enterpriseGateway.ingress.tls }}
+  tls:
+    {{- range .Values.enterpriseGateway.ingress.tls }}
+    - hosts:
+        {{- range .hosts }}
+        - {{ . | quote }}
+        {{- end }}
+      {{- with .secretName }}
+      secretName: {{ . }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+  rules:
+    {{- range .Values.enterpriseGateway.ingress.hosts }}
+    - host: {{ .host | quote }}
+      http:
+        paths:
+          {{- range .paths }}
+          - path: {{ .path }}
+            pathType: {{ .pathType }}
+            backend:
+              service:
+                name: {{ include "tempo.resourceName" $dict }}
+                port:
+                  number: {{ $.Values.enterpriseGateway.service.port | default (include "tempo.serverHttpListenPort" $ ) }}
+          {{- end }}
+    {{- end }}
+{{- end -}}
+{{- end -}}
