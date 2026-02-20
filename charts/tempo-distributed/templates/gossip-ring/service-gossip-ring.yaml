@@ -4,7 +4,7 @@ metadata:
   name: {{ include "tempo.resourceName" (dict "ctx" . "component" "gossip-ring") }}
   namespace: {{ .Release.Namespace }}
   labels:
-      foo: bar
+    foo: bar
     {{- include "tempo.labels" (dict "ctx" . "component" "gossip-ring") | nindent 4 }}
   annotations:
     {{- with .Values.tempo.memberlist.service.annotations | default dict }}
