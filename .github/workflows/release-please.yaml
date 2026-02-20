@@ -20,6 +20,19 @@ jobs:
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
 
+      - name: Debug
+        if: ${{ steps.release-please.outputs.pr }}
+        run: |
+          echo "=== PR JSON ==="
+          echo "${PR_JSON}" | jq .
+          echo "=== gh auth ==="
+          gh auth status
+          echo "=== GITHUB_* env vars ==="
+          env | grep -i "^GITHUB_"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_JSON: ${{ steps.release-please.outputs.pr }}
+
       - name: Enable auto-merge for Release PR
         if: ${{ steps.release-please.outputs.pr }}
         run: |
