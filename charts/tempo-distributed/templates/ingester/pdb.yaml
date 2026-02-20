@@ -6,6 +6,7 @@ metadata:
   name: {{ include "tempo.resourceName" (dict "ctx" . "component" "ingester") }}
   namespace: {{ .Release.Namespace }}
   labels:
+    foo: "bar"
     {{- include "tempo.labels" (dict "ctx" . "component" "ingester") | nindent 4 }}
 spec:
   selector:
