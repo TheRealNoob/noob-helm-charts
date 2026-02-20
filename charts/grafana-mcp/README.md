@@ -11,9 +11,9 @@ MCP server for Grafana.
 
 Kubernetes: `^1.25.0-0`
 
-## Chart Repo
+## Chart Repository
 
-Add the following repo to use the chart:
+Add the following repository to use the chart:
 
 ```console
 helm repo add grafana-community https://grafana-community.github.io/helm-charts

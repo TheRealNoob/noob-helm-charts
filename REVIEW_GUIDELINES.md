@@ -13,8 +13,8 @@ For the review and merge process, see [PROCESSES.md](./PROCESSES.md).
 ## Versioning
 
 - [ ] Chart `version` in `Chart.yaml` is bumped
-- [ ] Version follows [semver](https://semver.org/) (`MAJOR.MINOR.PATCH`)
-- [ ] Breaking (backwards-incompatible) changes bump the **MAJOR** version and include an "Upgrading" section in the chart README
+- [ ] Version follows [SemVer](https://semver.org/) (`MAJOR.MINOR.PATCH`)
+- [ ] Breaking (backwards-incompatible) changes bump the **MAJOR** version and include an "Upgrading" section in the chart readme
 
 ## Chart.yaml
 
@@ -24,7 +24,7 @@ Required fields:
 |-------|-------------|
 | `apiVersion` | `v2` |
 | `name` | Matches the chart directory name |
-| `version` | Valid semver, bumped from previous release |
+| `version` | Valid SemVer, bumped from previous release |
 | `appVersion` | Tracks the upstream application version |
 | `description` | Short, meaningful summary |
 | `kubeVersion` | Set appropriately (e.g. `^1.25.0-0`) |
@@ -49,7 +49,7 @@ Optional but encouraged:
 
 ## Documentation
 
-- [ ] Chart README is auto-generated via [helm-docs](https://github.com/norwoodj/helm-docs)
+- [ ] Chart readme is auto-generated via [helm-docs](https://github.com/norwoodj/helm-docs)
 - [ ] `templates/NOTES.txt` provides accurate post-install instructions when needed
 
 ## Testing
