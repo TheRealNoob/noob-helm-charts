@@ -25,3 +25,5 @@
 ci/
 tests/
 *.gotmpl
+# Human-readable changelog (not needed in chart package)
+CHANGELOG.md

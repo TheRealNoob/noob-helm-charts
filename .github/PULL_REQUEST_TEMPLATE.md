@@ -38,4 +38,4 @@ These checks run very quickly.  Please check the results.
 <!-- [Place an '[x]' (no spaces) in all applicable fields. Please remove unrelated fields.] -->
 - [ ] [DCO](https://github.com/TheRealNoob/noob-helm-charts/blob/master/CONTRIBUTING.md#sign-off-your-work) signed
 - [ ] Chart Version bumped
-- [ ] Title of the PR starts with chart name (e.g. `[grafana]`)
+- [ ] PR title uses Conventional Commits format (e.g. `fix(grafana): description`)
