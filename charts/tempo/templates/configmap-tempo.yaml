@@ -4,6 +4,7 @@ metadata:
   name: {{ template "tempo.name" . }}
   namespace: {{ .Release.Namespace }}
   labels:
+    label: "foobar"
     {{- include "tempo.labels" . | nindent 4 }}
 data:
   overrides.yaml: |
