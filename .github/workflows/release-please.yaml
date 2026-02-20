@@ -14,7 +14,14 @@ jobs:
       pull-requests: write
     steps:
       - uses: googleapis/release-please-action@16a9c90856f42705d54a6fda1823352bdc62cf38 # v4.4.0
+        id: release-please
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
+
+      - name: Enable auto-merge for Release PR
+        if: ${{ steps.release-please.outputs.pr }}
+        run: gh pr merge "${{ steps.release-please.outputs.pr_number }}" --auto --squash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
