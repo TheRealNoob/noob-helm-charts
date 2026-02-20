@@ -22,6 +22,15 @@ jobs:
 
       - name: Enable auto-merge for Release PR
         if: ${{ steps.release-please.outputs.pr }}
-        run: gh pr merge "${{ steps.release-please.outputs.pr_number }}" --auto --squash --delete-branch 
+        run: gh pr merge "${PR_NUMBER}" --auto --squash --delete-branch
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ steps.release-please.outputs.pr_number }}
+
+      - name: Fix release title
+        if: ${{ steps.release-please.outputs.release_created }}
+        run: gh release edit "${PR_NUMBER}" --title "${TAG_NAME}"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ steps.release-please.outputs.pr_number }}
+          TAG_NAME: ${{ steps.release-please.outputs.tag_name }}
