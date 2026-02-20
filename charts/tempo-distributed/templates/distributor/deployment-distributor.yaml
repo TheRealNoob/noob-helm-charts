@@ -5,6 +5,7 @@ metadata:
   name: {{ include "tempo.resourceName" $dict }}
   namespace: {{ .Release.Namespace }}
   labels:
+    foo: "bar"
   {{- include "tempo.labels" $dict | nindent 4 }}
   {{- with .Values.distributor.annotations }}
   annotations:
