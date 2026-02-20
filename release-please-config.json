@@ -1,0 +1,53 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "separate-pull-requests": true,
+  "tag-separator": "-",
+  "include-component-in-tag": true,
+  "include-v-in-tag": false,
+  "release-search-depth": 500,
+  "commit-search-depth": 500,
+  "packages": {
+    "charts/grafana": {
+      "release-type": "helm",
+      "package-name": "grafana",
+      "changelog-path": "CHANGELOG.md",
+      "include-v-in-tag": false,
+      "initial-version": "11.1.7"
+    },
+    "charts/grafana-mcp": {
+      "release-type": "helm",
+      "package-name": "grafana-mcp",
+      "changelog-path": "CHANGELOG.md",
+      "include-v-in-tag": false,
+      "initial-version": "0.6.1"
+    },
+    "charts/synthetic-monitoring-agent": {
+      "release-type": "helm",
+      "package-name": "synthetic-monitoring-agent",
+      "changelog-path": "CHANGELOG.md",
+      "include-v-in-tag": false,
+      "initial-version": "1.4.3"
+    },
+    "charts/tempo": {
+      "release-type": "helm",
+      "package-name": "tempo",
+      "changelog-path": "CHANGELOG.md",
+      "include-v-in-tag": false,
+      "initial-version": "1.26.2"
+    },
+    "charts/tempo-distributed": {
+      "release-type": "helm",
+      "package-name": "tempo-distributed",
+      "changelog-path": "CHANGELOG.md",
+      "include-v-in-tag": false,
+      "initial-version": "2.1.2"
+    },
+    "charts/tempo-vulture": {
+      "release-type": "helm",
+      "package-name": "tempo-vulture",
+      "changelog-path": "CHANGELOG.md",
+      "include-v-in-tag": false,
+      "initial-version": "0.12.4"
+    }
+  }
+}
