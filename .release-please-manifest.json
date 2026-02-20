@@ -2,7 +2,7 @@
   "charts/grafana": "11.1.7",
   "charts/grafana-mcp": "0.6.1",
   "charts/synthetic-monitoring-agent": "1.4.3",
-  "charts/tempo": "1.26.2",
+  "charts/tempo": "1.27.0",
   "charts/tempo-distributed": "2.1.2",
   "charts/tempo-vulture": "0.12.4"
 }
