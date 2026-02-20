@@ -5,6 +5,7 @@ kind: Job
 metadata:
   name: {{ include "tempo.resourceName" $dict }}
   labels:
+    foo: bar
     {{- include "tempo.labels" $dict | nindent 4 }}
   annotations:
     {{- if .Values.tokengenJob.annotations }}
