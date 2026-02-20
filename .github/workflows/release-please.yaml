@@ -25,11 +25,15 @@ jobs:
         run: gh pr merge "${PR_NUMBER}" --auto --squash --delete-branch
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_NUMBER: ${{ steps.release-please.outputs.pr }}
+          PR_NUMBER: ${{ fromJson(steps.release-please.outputs.pr).number }}
 
       - name: Fix release title
-        if: ${{ steps.release-please.outputs.release_created }}
-        run: gh release edit "${TAG_NAME}" --title "${TAG_NAME}"
+        if: ${{ steps.release-please.outputs.releases_created }}
+        run: |
+          path=$(echo "${PATHS_RELEASED}" | jq -r '.[0]')
+          tag=$(echo "${RELEASE_OUTPUTS}" | jq -r --arg key "${path}--tag_name" '.[$key]')
+          gh release edit "${tag}" --title "${tag}"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TAG_NAME: ${{ steps.release-please.outputs.tag_name }}
+          PATHS_RELEASED: ${{ steps.release-please.outputs.paths_released }}
+          RELEASE_OUTPUTS: ${{ toJSON(steps.release-please.outputs) }}
