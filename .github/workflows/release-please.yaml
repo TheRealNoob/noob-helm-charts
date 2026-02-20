@@ -30,7 +30,7 @@ jobs:
           PR_JSON: ${{ steps.release-please.outputs.pr }}
 
       - name: Fix release title
-        if: ${{ steps.release-please.outputs.releases_created }}
+        if: ${{ steps.release-please.outputs.releases_created == 'true' }}
         run: |
           path=$(echo "${PATHS_RELEASED}" | jq -r '.[0]')
           tag=$(echo "${RELEASE_OUTPUTS}" | jq -r --arg key "${path}--tag_name" '.[$key]')
