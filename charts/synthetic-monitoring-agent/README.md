@@ -12,7 +12,7 @@ Grafana's Synthetic Monitoring application. The agent provides probe functionali
 
 ## Maintainers
 
-| Name | Email | Url |
+| Name | Email  | URL |
 | ---- | ------ | --- |
 | Mohammad Abubaker | <sheikhabubaker761@gmail.com> | <https://github.com/Sheikh-Abubaker> |
 | Aviv Guiser | <avivguiser@gmail.com> | <https://github.com/KyriosGN0> |
